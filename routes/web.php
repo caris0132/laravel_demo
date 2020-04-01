@@ -22,3 +22,9 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/element', function () {
+    return view('element');
+})->name('element');
+
+
