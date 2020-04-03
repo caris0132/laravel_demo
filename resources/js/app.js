@@ -7,11 +7,45 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+import VueRouter from "vue-router";
 import App from './components/App.vue';
+import Home from './components/Home.vue';
+import Hello from './components/Hello.vue';
+import UsersIndex from './components/UsersIndex.vue';
+import UserEdit from './components/UserEdit.vue';
 import Element from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
+Vue.use(VueRouter);
 Vue.use(Element);
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/admin',
+            name: 'home',
+            component: Home
+        },
+        {
+            path: '/admin/hello',
+            name: 'hello',
+            component: Hello
+        },
+        {
+            path: '/admin/users',
+            name: 'users.index',
+            component: UsersIndex
+        },
+        {
+            path: '/admin/users/:id/edit',
+            name: 'users.edit',
+            component: UserEdit
+        },
+
+    ]
+})
 
 /**
  * The following block of code may be used to automatically register your
@@ -24,8 +58,7 @@ Vue.use(Element);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('element-component', require('./components/ElementComponent.vue').default);
+//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -35,5 +68,6 @@ Vue.component('element-component', require('./components/ElementComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    router,
     render: h => h(App)
 });

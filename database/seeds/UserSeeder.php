@@ -13,10 +13,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'NDT_caris',
-            'email' => 'nguyenductri.nina@gmail.com',
-            'password' => Hash::make('adm123')
-        ]);
+        factory('App\User', 50)->create();
     }
 }

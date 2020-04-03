@@ -23,7 +23,7 @@
 export default {
     computed: {
         image() {
-            return `images/${this.color}.png`
+            return `/images/${this.color}.png`
         }
     },
     methods: {
